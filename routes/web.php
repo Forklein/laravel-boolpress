@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.home');
 });
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+});
