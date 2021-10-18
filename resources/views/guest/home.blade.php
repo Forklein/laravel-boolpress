@@ -7,20 +7,22 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height container navbar">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links font-weight-bold">
                     @auth
                         <a href="{{ url('/admin') }}">Admin Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">LOGIN</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">REGISTER</a>
                         @endif
                     @endauth
                 </div>
             @endif
+        </div>
+        <div class="container">
             <div id="root"></div>
         </div>
 

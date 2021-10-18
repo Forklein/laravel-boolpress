@@ -9,8 +9,9 @@
         <div class="card-body">
             <p>{{$post->content}}</p>
         </div>
-        <div class="card-footer">
-            <address>{{$post->getFormattedDate('created_at')}}</address>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <address class="font-weight-bold">{{$post->getFormattedDate('created_at')}}</address>
+            <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>

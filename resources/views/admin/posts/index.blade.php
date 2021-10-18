@@ -16,6 +16,7 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$post->title}}</td>
             <td>{{$post->getFormattedDate('created_at')}}</td>
+            <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Details</a></td>
           </tr>
           @empty
           <tr>
