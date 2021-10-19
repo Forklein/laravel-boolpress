@@ -27,7 +27,7 @@
             <td class="d-flex justify-content-end">
               <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Details</a>
               <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning mx-2">Edit</a>
-              <form method="post" action="{{ route('admin.posts.destroy', $post->id) }}">
+              <form method="post" action="{{ route('admin.posts.destroy', $post->id) }}" class="delete-form">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -43,4 +43,9 @@
       </table>
       {{$posts->links()}}
 </div>
+@endsection
+
+
+@section('scripts')
+<script src="{{ asset('js/confirm.js') }}"></script>
 @endsection
