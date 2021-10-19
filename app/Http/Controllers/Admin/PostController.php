@@ -42,11 +42,11 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|unique:posts|string|min:3',
-            'content' => 'required|string',
-            'image' => 'required|string',
+            'content' => 'required|string|min:20',
+            'image' => 'string|min:10',
         ], [
-            'required' => 'Il campo :attribute è obbligatorio',
-            'image.required' => 'Immagine necessaria'
+            // 'required' => 'Il campo :attribute è obbligatorio',
+            // 'image.required' => 'Immagine necessaria'
         ]);
 
         $data = $request->all();
@@ -91,11 +91,11 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:3'],
-            'content' => 'required|string',
-            'image' => 'required|string',
+            'content' => 'required|string|min:20',
+            'image' => 'string|min:10',
         ], [
-            'required' => 'Il campo :attribute è obbligatorio',
-            'image.required' => 'Immagine necessaria'
+            // 'required' => 'Il campo :attribute è obbligatorio',
+            // 'image.required' => 'Immagine necessaria'
         ]);
 
         $data = $request->all();

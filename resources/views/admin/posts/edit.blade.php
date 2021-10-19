@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @include('includes.errors')
     <header>
         <h1>Edit Post</h1>
     </header>
