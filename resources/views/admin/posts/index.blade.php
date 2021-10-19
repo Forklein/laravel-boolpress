@@ -2,12 +2,20 @@
 
 @section('content')
 <div class="container">
+    @if(session('alert'))
+    <div class="alert alert-{{session('alert')}}">
+      <strong>{{session('alert-message')}}</strong>
+    </div>
+    @endif
     <table class="table">
         <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Scritto il</th>
+            <th scope="col" class="text-right">
+              <a href="{{ route('admin.posts.create') }}" class="btn btn-success">Crea post</a>
+            </th>
           </tr>
         </thead>
         <tbody>
