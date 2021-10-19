@@ -27,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $post = new Post();
+        return view('admin.posts.create', compact('post'));
     }
 
     /**
@@ -82,7 +83,7 @@ class PostController extends Controller
         // $post->fill($data);
         $post->slug = str::slug($post->title, '-');
         $post->update($data);
-        return redirect()->route('admin.posts.index')->with('alert', 'info')->with('alert-message', "$post->title modificato con successo");
+        return redirect()->route('admin.posts.index')->with('alert', 'info')->with('alert-message', 'Elemento modificato con successo');
     }
 
     /**
