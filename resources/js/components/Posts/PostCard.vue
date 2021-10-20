@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-3">
+  <div class="card mt-2">
     <div class="card-header">{{ posts.title }}</div>
     <div class="card-body">{{ posts.content }}</div>
     <div class="card-footer">Pubblicato il {{ getDate(posts.created_at) }}</div>
