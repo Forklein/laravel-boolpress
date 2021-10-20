@@ -24,18 +24,21 @@
           </ul>
         </nav>
       </div>
-      <PostCard v-for="post in posts" :key="post.id" :posts="post" />
+      <Loader v-if="isLoading" />
+      <PostCard v-else v-for="post in posts" :key="post.id" :posts="post" />
     </section>
   </main>
 </template>
 
 <script>
 import PostCard from "../Posts/PostCard";
+import Loader from "../Loader";
 
 export default {
   name: "PostList",
   components: {
     PostCard,
+    Loader,
   },
   data() {
     return {
@@ -43,10 +46,12 @@ export default {
       posts: [],
       currentPage: "",
       lastPage: "",
+      isLoading: false,
     };
   },
   methods: {
     getPosts(page) {
+      this.isLoading = true;
       axios
         .get(`${this.baseUri}/api/posts?page=${page}`)
         .then((res) => {
@@ -57,6 +62,9 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+        })
+        .then(() => {
+          this.isLoading = false;
         });
     },
   },
