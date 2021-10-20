@@ -69,7 +69,7 @@ export default {
     },
   },
   created() {
-    this.getPosts(2);
+    this.getPosts(1);
   },
 };
 </script>

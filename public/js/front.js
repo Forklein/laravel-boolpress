@@ -2463,7 +2463,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.getPosts(2);
+    this.getPosts(1);
   }
 });
 
@@ -6923,7 +6923,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".loader[data-v-e79ec684] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.loader .spinner-border[data-v-e79ec684] {\n  width: 200px;\n  height: 200px;\n}", ""]);
+exports.push([module.i, ".loader[data-v-e79ec684] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 9;\n}\n.loader .spinner-border[data-v-e79ec684] {\n  width: 200px;\n  height: 200px;\n}", ""]);
 
 // exports
 
