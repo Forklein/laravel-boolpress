@@ -24,5 +24,10 @@ export default {
       test: "Benvenuto!",
     };
   },
+  created() {
+    axios.get("http://127.0.0.1:8000/api/posts").then((res) => {
+      console.log(res.data);
+    });
+  },
 };
 </script>
