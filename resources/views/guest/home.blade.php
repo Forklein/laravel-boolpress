@@ -22,9 +22,8 @@
                 </div>
             @endif
         </div>
-        <div class="container">
-            <div id="root"></div>
-        </div>
+        
+        <div id="root"></div>
 
         <script src="{{ asset('js/front.js') }}"></script>
     </body>

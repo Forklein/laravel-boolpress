@@ -1,5 +1,5 @@
 <template>
-  <div class="card my-3">
+  <div class="card mt-3">
     <div class="card-header">{{ posts.title }}</div>
     <div class="card-body">{{ posts.content }}</div>
     <div class="card-footer">{{ posts.created_at }}</div>
