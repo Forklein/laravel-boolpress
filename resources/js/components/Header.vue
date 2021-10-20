@@ -1,18 +1,14 @@
 <template>
-  <div class="card-header text-center">{{ welcome }}</div>
+  <header>
+    <h1>Boolpress</h1>
+  </header>
 </template>
 
 <script>
 export default {
   name: "Header",
-  data() {
-    return {
-      test: "test",
-    };
-  },
-  props: ["welcome"],
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 </style>
