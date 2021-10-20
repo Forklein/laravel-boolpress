@@ -1,7 +1,29 @@
 <template>
   <main>
     <section id="postlist">
-      <h2>I miei Post</h2>
+      <div class="header postlist d-flex justify-content-between pointer">
+        <h2>I miei Post</h2>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li v-if="currentPage > 1" class="page-item">
+              <a class="page-link" @click="getPosts(currentPage - 1)"
+                >Previous</a
+              >
+            </li>
+            <li
+              v-for="n in lastPage"
+              :key="n"
+              class="page-item"
+              :class="currentPage == n ? 'active' : ''"
+            >
+              <a class="page-link" @click="getPosts(n)">{{ n }}</a>
+            </li>
+            <li v-if="currentPage < lastPage" class="page-item">
+              <a class="page-link" @click="getPosts(currentPage + 1)">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <PostCard v-for="post in posts" :key="post.id" :posts="post" />
     </section>
   </main>
@@ -17,21 +39,35 @@ export default {
   },
   data() {
     return {
+      baseUri: "http://127.0.0.1:8000",
       posts: [],
+      currentPage: "",
+      lastPage: "",
     };
   },
+  methods: {
+    getPosts(page) {
+      axios
+        .get(`${this.baseUri}/api/posts?page=${page}`)
+        .then((res) => {
+          const { data, current_page, last_page } = res.data;
+          this.posts = data;
+          this.currentPage = current_page;
+          this.lastPage = last_page;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
   created() {
-    axios
-      .get("http://127.0.0.1:8000/api/posts")
-      .then((res) => {
-        this.posts = res.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getPosts(2);
   },
 };
 </script>
 
 <style scoped lang="scss">
+.pointer {
+  cursor: pointer;
+}
 </style>
