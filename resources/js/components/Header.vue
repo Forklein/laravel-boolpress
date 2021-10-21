@@ -11,4 +11,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+header {
+  h1 {
+    text-shadow: 1px 1px 20px darkcyan;
+  }
+}
 </style>

@@ -2,7 +2,7 @@
   <main>
     <section id="postlist">
       <div class="header postlist d-flex justify-content-between pointer">
-        <h2>I miei Post</h2>
+        <h2 class="font-italic">I miei Post</h2>
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li v-if="currentPage > 1" class="page-item">
