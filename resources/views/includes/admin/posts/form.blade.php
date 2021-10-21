@@ -29,9 +29,9 @@
     <div class="mb-3">
       <label for="category_id" class="form-label">Category</label>
       <select class="form-control" id="category_id" name="category_id">
-        <option>Nessuna Categoria</option>
+        <option value="">Nessuna Categoria</option>
         @foreach($categories as $category)
-        <option @if (old('category_id') == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+        <option @if (old('category_id', $post->category_id) == $category->id ) selected @endif value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
       </select>
     </div>
