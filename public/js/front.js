@@ -2356,6 +2356,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["posts"],
@@ -38936,15 +38945,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card mt-2" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v(_vm._s(_vm.posts.title))
+      _c("h3", { staticClass: "m-0" }, [_vm._v(_vm._s(_vm.posts.title))])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._v(_vm._s(_vm.posts.content))
+      _c("p", { staticClass: "m-0" }, [_vm._v(_vm._s(_vm.posts.content))])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }, [
-      _vm._v("Pubblicato il " + _vm._s(_vm.getDate(_vm.posts.created_at)))
+    _c("div", { staticClass: "card-footer d-flex justify-content-between" }, [
+      _c("p", { staticClass: "m-0" }, [
+        _vm._v("Pubblicato il " + _vm._s(_vm.getDate(_vm.posts.created_at)))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "m-0" }, [
+        _vm._v(
+          "\n      Category " +
+            _vm._s(_vm.posts.category.name || "Nessuna categoria") +
+            "\n    "
+        )
+      ])
     ])
   ])
 }

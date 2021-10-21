@@ -1,8 +1,17 @@
 <template>
   <div class="card mt-2">
-    <div class="card-header">{{ posts.title }}</div>
-    <div class="card-body">{{ posts.content }}</div>
-    <div class="card-footer">Pubblicato il {{ getDate(posts.created_at) }}</div>
+    <div class="card-header">
+      <h3 class="m-0">{{ posts.title }}</h3>
+    </div>
+    <div class="card-body">
+      <p class="m-0">{{ posts.content }}</p>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <p class="m-0">Pubblicato il {{ getDate(posts.created_at) }}</p>
+      <p class="m-0">
+        Category {{ posts.category.name || "Nessuna categoria" }}
+      </p>
+    </div>
   </div>
 </template>
 
