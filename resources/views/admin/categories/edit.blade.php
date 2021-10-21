@@ -15,6 +15,7 @@
                 <input type="text" class="form-control" id="color" name="color" value="{{$category->color}}">
             </div>
             <button class="btn btn-success" type="submit">Save</button>
+            <a class="btn btn-primary" href="{{route('admin.categories.index')}}">Back</a>
         </form>
     </div>
 </div>
