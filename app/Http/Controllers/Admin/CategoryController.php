@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -37,7 +37,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $category = new Category();
+        $category->fill($data);
+        $category->save();
+        return redirect()->route('admin.categories.index')->with('alert', 'success')->with('alert-message', 'Elemento salvato con successo');
     }
 
     /**
@@ -57,9 +61,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -69,9 +73,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->all();
+        $category->update($data);
+        return redirect()->route('admin.categories.index')->with('alert', 'info')->with('alert-message', 'Elemento modificato con successo');
     }
 
     /**
@@ -82,6 +88,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id);
+        return redirect()->route('admin.categories.index')->with('alert', 'danger')->with('alert-message', 'Elemento eliminato con successo');
     }
 }
