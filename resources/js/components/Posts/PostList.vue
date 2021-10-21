@@ -25,7 +25,7 @@
         </nav>
       </div>
       <Loader v-if="isLoading" />
-      <PostCard v-else v-for="post in posts" :key="post.id" :posts="post" />
+      <PostCard v-else v-for="post in posts" :key="post.id" :post="post" />
     </section>
   </main>
 </template>
