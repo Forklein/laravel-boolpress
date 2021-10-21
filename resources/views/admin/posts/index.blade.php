@@ -24,7 +24,7 @@
           <tr>
             <td>{{$post->id}}</td>
             <td>{{$post->title}}</td>
-            <td></td>
+            <td>@if($post->category){{$post->category->name}}@else Nessuna Categoria @endif</td>
             <td>{{$post->getFormattedDate('created_at')}}</td>
             <td class="d-flex justify-content-end">
               <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Details</a>
