@@ -26,6 +26,15 @@
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
+    <div class="mb-3">
+      <label for="category_id" class="form-label">Category</label>
+      <select class="form-control" id="category_id" name="category_id">
+        <option value="">Nessuna Categoria</option>
+        @foreach($categories as $category)
+        <option @if (old('category_id') == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+        @endforeach
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Back</a>
 </form>

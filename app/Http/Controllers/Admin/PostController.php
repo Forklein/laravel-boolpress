@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -17,8 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts', 'categories'));
     }
 
     /**
@@ -28,8 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         $post = new Post();
-        return view('admin.posts.create', compact('post'));
+        return view('admin.posts.create', compact('post', 'categories'));
     }
 
     /**
@@ -42,8 +45,9 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|unique:posts|string|min:3',
-            'content' => 'required|string|min:20',
-            'image' => 'string|min:10',
+            'content' => 'required|string|min:10',
+            'image' => 'string|min:3',
+            'category_id' => 'nullable|exists:categories,id'
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
             // 'image.required' => 'Immagine necessaria'
@@ -77,7 +81,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -91,8 +96,8 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:3'],
-            'content' => 'required|string|min:20',
-            'image' => 'string|min:10',
+            'content' => 'required|string|min:10',
+            'image' => 'string|min:3',
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
             // 'image.required' => 'Immagine necessaria'

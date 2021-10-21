@@ -12,6 +12,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
+            <th scope="col">Category</th>
             <th scope="col">Scritto il</th>
             <th scope="col" class="text-right">
               <a href="{{ route('admin.posts.create') }}" class="btn btn-success">Crea post</a>
@@ -23,6 +24,7 @@
           <tr>
             <td>{{$post->id}}</td>
             <td>{{$post->title}}</td>
+            <td></td>
             <td>{{$post->getFormattedDate('created_at')}}</td>
             <td class="d-flex justify-content-end">
               <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Details</a>
