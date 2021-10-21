@@ -12,4 +12,10 @@ class Post extends Model
     {
         return Carbon::create($this->$column)->format($format);
     }
+
+    //$category->posts
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }
