@@ -10,7 +10,10 @@
             <p>{{$post->content}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
-            <address class="font-weight-bold">{{$post->getFormattedDate('created_at')}}</address>
+            <div class="info">
+                <address class="font-weight-bold">{{$post->getFormattedDate('created_at')}}</address>
+                <address class="font-weight-bold">Category @if($post->category){{$post->category->name}}@else Nessuna Categoria @endif</address>
+            </div>
             <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Back</a>
         </div>
     </div>

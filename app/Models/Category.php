@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = ['name', 'color'];
-    public function category()
+
+    //$category->posts
+    public function posts()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->hasMany('App\Models\Post');
     }
 }
