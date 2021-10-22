@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -57,6 +58,7 @@ class PostController extends Controller
         $post = new Post();
         $post->fill($data);
         $post->slug = str::slug($post->title, '-');
+        $post->user_id = Auth::id();
         $post->save();
         // Post::create($data)
         return redirect()->route('admin.posts.index')->with('alert', 'success')->with('alert-message', "$post->title creato con successo");
@@ -106,6 +108,7 @@ class PostController extends Controller
         $data = $request->all();
         // $post->fill($data);
         $post->slug = str::slug($post->title, '-');
+        $post->user_id = Auth::id();
         $post->update($data);
         return redirect()->route('admin.posts.index')->with('alert', 'info')->with('alert-message', 'Elemento modificato con successo');
     }
