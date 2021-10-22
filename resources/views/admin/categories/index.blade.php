@@ -11,6 +11,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center font-weight-bold text-center">
                     <div class="info col-4">
                         {{$category->name}}
+                        <br />
                         <span class="badge p-2 rounded-pill bg-{{$category->color}}">{{$category->name}}</span>
                     </div>
                     <div class="count col-4">

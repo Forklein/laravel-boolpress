@@ -8,13 +8,18 @@
     </div>
     <div class="card-footer d-flex justify-content-between">
       <p class="m-0">Pubblicato il {{ getDate(post.created_at) }}</p>
+      <span
+        class="badge p-2 rounded-pill"
+        :class="`badge-${post.category ? post.category.color : 'dark'}`"
+        >{{ post.category ? post.category.name : "nessuna" }}</span
+      >
       <!-- <p class="m-0">
         Categoria: {{ post.category.name ?? "Nessuna categoria" }}
       </p> -->
-      <p v-if="post.category_id" class="m-0">
+      <!-- <p v-if="post.category_id" class="m-0">
         Categoria: {{ post.category.name }}
       </p>
-      <p v-else class="m-0">Nessuna Categoria</p>
+      <p v-else class="m-0">Nessuna Categoria</p> -->
     </div>
   </div>
 </template>

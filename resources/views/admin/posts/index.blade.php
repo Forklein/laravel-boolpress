@@ -29,7 +29,12 @@
               @if($post->category) <span class="badge p-2 rounded-pill bg-{{$post->category->color}}">{{$post->category->name}}</span> @else Nessuna Categoria @endif
             </td>
             <td>
-              @if($post->author) {{$post->author->name}} @else Nessun Autore @endif
+              @if($post->author) 
+              {{$post->author->name}}
+                @if($post->author->userInfo)
+                  <address>{{$post->author->userInfo->address}}</address>
+                @endif 
+              @else Nessun Autore @endif
             </td>
             <td>{{$post->getFormattedDate('created_at')}}</td>
             <td class="d-flex justify-content-end">
