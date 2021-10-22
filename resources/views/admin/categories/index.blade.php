@@ -8,12 +8,15 @@
         </div>
         <ul class="list-group">
             @forelse ($categories as $category)
-                <li class="list-group-item d-flex justify-content-between align-items-center font-weight-bold">
-                    <div class="info">
+                <li class="list-group-item d-flex justify-content-between align-items-center font-weight-bold text-center">
+                    <div class="info col-4">
                         {{$category->name}}
+                        <span class="badge p-2 rounded-pill bg-{{$category->color}}">{{$category->name}}</span>
                     </div>
-                    <span class="badge p-2 rounded-pill bg-{{$category->color}}">{{$category->name}}</span>
-                    <div class="btn d-flex">
+                    <div class="count col-4">
+                        Numero Post <br/> {{count($category->posts)}}
+                    </div>
+                    <div class="btn d-flex col-4">
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-warning mx-2">Edit</a>
                         <form method="post" action="{{ route('admin.categories.destroy', $category->id) }}" class="delete-form">
                           @csrf

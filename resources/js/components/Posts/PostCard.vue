@@ -8,6 +8,9 @@
     </div>
     <div class="card-footer d-flex justify-content-between">
       <p class="m-0">Pubblicato il {{ getDate(post.created_at) }}</p>
+      <!-- <p class="m-0">
+        Categoria: {{ post.category.name ?? "Nessuna categoria" }}
+      </p> -->
       <p v-if="post.category_id" class="m-0">
         Categoria: {{ post.category.name }}
       </p>
