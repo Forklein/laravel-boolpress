@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\UserInfo;
 
 class PostController extends Controller
 {
@@ -16,7 +17,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         // $order = $request->query('order') ?? 'asc';
-        $posts = Post::with('category', 'author')->orderBy('id', 'desc')->paginate(4);
+        $posts = Post::with('category', 'author', 'userInfo')->orderBy('id', 'desc')->paginate(4);
         return response()->json($posts);
     }
 

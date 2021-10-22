@@ -22,7 +22,7 @@ class PostController extends Controller
         // $info = Auth::user()->userInfo->address;
         // @dd($info);
         $categories = Category::all();
-        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(8);
         return view('admin.posts.index', compact('posts', 'categories'));
     }
 

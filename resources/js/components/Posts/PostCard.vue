@@ -7,7 +7,12 @@
       <p class="m-0">{{ post.content }}</p>
     </div>
     <div class="card-footer d-flex justify-content-between">
-      <p class="m-0">Pubblicato il {{ getDate(post.created_at) }}</p>
+      <div class="author d-flex">
+        <p class="m-0 mr-5 font-weight-bold">
+          {{ post.author ? post.author.name : "Nessun autore" }}
+        </p>
+        <p class="m-0">Pubblicato il {{ getDate(post.created_at) }}</p>
+      </div>
       <span
         class="badge p-2 rounded-pill"
         :class="`badge-${post.category ? post.category.color : 'dark'}`"

@@ -23,4 +23,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function userInfo()
+    {
+        return $this->belongsTo('App\UserInfo', 'user_id');
+    }
 }
