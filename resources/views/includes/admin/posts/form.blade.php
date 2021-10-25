@@ -38,13 +38,13 @@
     <div class="mb-3 d-flex">
       @foreach ($tags as $tag)
       <div class="form-check mr-2">
-        <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]">
+        <input @if (in_array($tag->id, old('tags', $tagIds ?? []))) checked @endif class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]">
         <label class="form-check-label" for="tag-{{$tag->id}}">
           {{$tag->name}}
         </label>
       </div>
       @endforeach
-      @error('tags[]')
+      @error('tags')
       <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
