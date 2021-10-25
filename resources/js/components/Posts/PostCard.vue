@@ -1,7 +1,8 @@
 <template>
   <div class="card mt-2">
-    <div class="card-header">
-      <h3 class="m-0">{{ post.title }}</h3>
+    <div class="card-header d-flex justify-content-between">
+      <h5 class="m-0 font-weight-bold">Title: {{ post.title }}</h5>
+      <h6 class="m-0">Tags: {{ getTags(this.post.tags) }}</h6>
     </div>
     <div class="card-body">
       <p class="m-0">{{ post.content }}</p>
@@ -46,6 +47,15 @@ export default {
       }
       const year = postDate.getFullYear();
       return `${day}-${month}-${year}`;
+    },
+    getTags(tags) {
+      if (tags) {
+        let postTag = "";
+        tags.forEach((tag) => {
+          postTag += tag.name + "-";
+        });
+        return postTag;
+      }
     },
   },
 };

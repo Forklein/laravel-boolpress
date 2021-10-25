@@ -42,11 +42,11 @@
         <label class="form-check-label" for="tag-{{$tag->id}}">
           {{$tag->name}}
         </label>
+        {{-- @error('tags')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror --}}
       </div>
       @endforeach
-      @error('tags')
-      <div class="invalid-feedback">{{ $message }}</div>
-      @enderror
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Back</a>

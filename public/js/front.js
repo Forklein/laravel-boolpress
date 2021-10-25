@@ -2379,6 +2379,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"],
@@ -2399,6 +2400,15 @@ __webpack_require__.r(__webpack_exports__);
 
       var year = postDate.getFullYear();
       return "".concat(day, "-").concat(month, "-").concat(year);
+    },
+    getTags: function getTags(tags) {
+      if (tags) {
+        var postTag = "";
+        tags.forEach(function (tag) {
+          postTag += tag.name + "-";
+        });
+        return postTag;
+      }
     }
   }
 });
@@ -39007,8 +39017,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card mt-2" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "m-0" }, [_vm._v(_vm._s(_vm.post.title))])
+    _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
+      _c("h5", { staticClass: "m-0 font-weight-bold" }, [
+        _vm._v("Title: " + _vm._s(_vm.post.title))
+      ]),
+      _vm._v(" "),
+      _c("h6", { staticClass: "m-0" }, [
+        _vm._v("Tags: " + _vm._s(_vm.getTags(this.post.tags)))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [

@@ -56,7 +56,8 @@ class PostController extends Controller
             'tags' => 'nullable|exists:tags,id'
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
-            // 'image.required' => 'Immagine necessaria'
+            // 'image.required' => 'Immagine necessaria',
+            'tags.exists' => 'Value non esistente'
         ]);
 
         $data = $request->all();
@@ -114,7 +115,8 @@ class PostController extends Controller
             'tags' => 'nullable|exists:tags,id'
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
-            // 'image.required' => 'Immagine necessaria'
+            // 'image.required' => 'Immagine necessaria',
+            'tags.exists' => 'Value non esistente'
         ]);
 
         $data = $request->all();
