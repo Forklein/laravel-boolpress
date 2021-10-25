@@ -111,6 +111,7 @@ class PostController extends Controller
             'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:3'],
             'content' => 'required|string|min:10',
             'image' => 'string|min:3',
+            'tags' => 'nullable|exists:tags,id'
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
             // 'image.required' => 'Immagine necessaria'
@@ -120,6 +121,11 @@ class PostController extends Controller
         // $post->fill($data);
         $post->slug = str::slug($post->title, '-');
         $post->user_id = Auth::id();
+
+        //Prima di update perchè abbiamo ID
+        if (!array_key_exists('tags', $data)) $post->tags()->detach();
+        else $post->tags()->sync($data['tags']);
+
         $post->update($data);
         return redirect()->route('admin.posts.index')->with('alert', 'info')->with('alert-message', 'Elemento modificato con successo');
     }
@@ -132,6 +138,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+
+        if (count($post->tags)) $post->tags()->detach();
+        //Se il post ha dei tags eliminiamo prima i tags e poi i post
         $post->delete();
         return redirect()->route('admin.posts.index')->with('alert', 'danger')->with('alert-message', "$post->title eliminato con successo");
     }
