@@ -13,7 +13,6 @@
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Category</th>
-            {{-- <th scope="col">Tags</th> --}}
             <th scope="col">Author</th>
             <th scope="col">Address</th>
             <th scope="col">Tags</th>

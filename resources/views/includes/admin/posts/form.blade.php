@@ -35,6 +35,19 @@
         @endforeach
       </select>
     </div>
+    <div class="mb-3 d-flex">
+      @foreach ($tags as $tag)
+      <div class="form-check mr-2">
+        <input class="form-check-input" type="checkbox" value="" id="tag-{{$tag->id}}" name="tags[]">
+        <label class="form-check-label" for="tag-{{$tag->id}}">
+          {{$tag->name}}
+        </label>
+      </div>
+      @endforeach
+      @error('image')
+      <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Back</a>
 </form>
