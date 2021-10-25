@@ -52,7 +52,8 @@ class PostController extends Controller
             'title' => 'required|unique:posts|string|min:3',
             'content' => 'required|string|min:10',
             'image' => 'string|min:3',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
             // 'image.required' => 'Immagine necessaria'
@@ -64,6 +65,10 @@ class PostController extends Controller
         $post->slug = str::slug($post->title, '-');
         $post->user_id = Auth::id();
         $post->save();
+
+        //se ho dei tags creo la relazione (dopo SAVE per creare ID del post)
+        if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
+
         // Post::create($data)
         return redirect()->route('admin.posts.index')->with('alert', 'success')->with('alert-message', "$post->title creato con successo");
     }
@@ -87,8 +92,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
