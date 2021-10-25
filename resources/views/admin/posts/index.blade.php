@@ -13,7 +13,10 @@
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Category</th>
+            {{-- <th scope="col">Tags</th> --}}
             <th scope="col">Author</th>
+            <th scope="col">Address</th>
+            <th scope="col">Tags</th>
             <th scope="col">Scritto il</th>
             <th scope="col" class="text-right">
               <a href="{{ route('admin.posts.create') }}" class="btn btn-success">Crea post</a>
@@ -30,13 +33,18 @@
             </td>
             <td>
               @if($post->author) 
-              {{$post->author->name}}
-                @if($post->author->userInfo)
-                  <address>{{$post->author->userInfo->address}}</address>
-                @endif 
-              @else Nessun Autore @endif
+                {{$post->author->name}}
+                @else Nessun Autore 
+              @endif
             </td>
-            <td>{{$post->getFormattedDate('created_at')}}</td>
+            <td>
+              @if($post->author->userInfo) 
+                {{$post->author->userInfo->address}}
+                @else Nessuna Via 
+              @endif
+            </td>
+            <td></td>
+            <td>{{$post->getFormattedDate('created_at', 'd-m-Y')}}</td>
             <td class="d-flex justify-content-end">
               <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Details</a>
               <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning mx-2">Edit</a>
