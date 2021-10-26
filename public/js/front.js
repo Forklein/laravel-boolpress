@@ -2380,6 +2380,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"],
@@ -2402,13 +2405,11 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(day, "-").concat(month, "-").concat(year);
     },
     getTags: function getTags(tags) {
-      if (tags) {
-        var postTag = "";
-        tags.forEach(function (tag) {
-          postTag += tag.name + "-";
-        });
-        return postTag;
-      }
+      var postTag = "";
+      tags.forEach(function (tag) {
+        postTag += tag.name + "-";
+      });
+      return postTag;
     }
   }
 });
@@ -39023,7 +39024,15 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("h6", { staticClass: "m-0" }, [
-        _vm._v("Tags: " + _vm._s(_vm.getTags(this.post.tags)))
+        _vm._v(
+          "\n      Tags:\n      " +
+            _vm._s(
+              _vm.post.tags.length > 0
+                ? _vm.getTags(_vm.post.tags)
+                : "Nessun Tags"
+            ) +
+            "\n    "
+        )
       ])
     ]),
     _vm._v(" "),
@@ -39053,7 +39062,13 @@ var render = function() {
           class:
             "badge-" + (_vm.post.category ? _vm.post.category.color : "dark")
         },
-        [_vm._v(_vm._s(_vm.post.category ? _vm.post.category.name : "nessuna"))]
+        [
+          _vm._v(
+            _vm._s(
+              _vm.post.category ? _vm.post.category.name : "Nessuna Categoria"
+            )
+          )
+        ]
       )
     ])
   ])
@@ -39089,10 +39104,10 @@ var render = function() {
           "div",
           {
             staticClass:
-              "header postlist d-flex justify-content-between pointer"
+              "header postlist d-flex justify-content-between pointer mt-3"
           },
           [
-            _c("h2", { staticClass: "font-italic" }, [_vm._v("I miei Post")]),
+            _c("h3", { staticClass: "font-italic" }, [_vm._v("Posts")]),
             _vm._v(" "),
             _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
               _c(

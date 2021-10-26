@@ -1,8 +1,8 @@
 <template>
   <main>
     <section id="postlist">
-      <div class="header postlist d-flex justify-content-between pointer">
-        <h2 class="font-italic">I miei Post</h2>
+      <div class="header postlist d-flex justify-content-between pointer mt-3">
+        <h3 class="font-italic">Posts</h3>
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li v-if="currentPage > 1" class="page-item">

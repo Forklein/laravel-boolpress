@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         // $order = $request->query('order') ?? 'asc';
-        $posts = Post::with(['category', 'author', 'userInfo', 'tags'])->orderBy('id', 'desc')->paginate(4);
+        $posts = Post::with(['category', 'author', 'userInfo', 'tags'])->orderBy('created_at', 'desc')->paginate(4);
         return response()->json($posts);
     }
 

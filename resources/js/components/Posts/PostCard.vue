@@ -2,7 +2,10 @@
   <div class="card mt-2">
     <div class="card-header d-flex justify-content-between">
       <h5 class="m-0 font-weight-bold">Title: {{ post.title }}</h5>
-      <h6 class="m-0">Tags: {{ getTags(this.post.tags) }}</h6>
+      <h6 class="m-0">
+        Tags:
+        {{ post.tags.length > 0 ? getTags(post.tags) : "Nessun Tags" }}
+      </h6>
     </div>
     <div class="card-body">
       <p class="m-0">{{ post.content }}</p>
@@ -17,7 +20,7 @@
       <span
         class="badge p-2 rounded-pill"
         :class="`badge-${post.category ? post.category.color : 'dark'}`"
-        >{{ post.category ? post.category.name : "nessuna" }}</span
+        >{{ post.category ? post.category.name : "Nessuna Categoria" }}</span
       >
       <!-- <p class="m-0">
         Categoria: {{ post.category.name ?? "Nessuna categoria" }}
@@ -49,13 +52,11 @@ export default {
       return `${day}-${month}-${year}`;
     },
     getTags(tags) {
-      if (tags) {
-        let postTag = "";
-        tags.forEach((tag) => {
-          postTag += tag.name + "-";
-        });
-        return postTag;
-      }
+      let postTag = "";
+      tags.forEach((tag) => {
+        postTag += tag.name + "-";
+      });
+      return postTag;
     },
   },
 };
