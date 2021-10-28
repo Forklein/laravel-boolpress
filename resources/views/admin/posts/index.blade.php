@@ -63,8 +63,8 @@
           <tr>
             <td colspan="8">Nessun Post</td>
           </tr>
+          @endforelse
         </tbody>
-        @endforelse
       </table>
       {{$posts->links()}}
 </div>

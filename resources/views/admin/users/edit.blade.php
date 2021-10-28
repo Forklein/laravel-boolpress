@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 @section('content')
 <div class="container">
     <div class="col-4 mx-auto shadow p-3">

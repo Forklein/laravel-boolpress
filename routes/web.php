@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 // ['register' => false]
+
+
 Auth::routes();
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
