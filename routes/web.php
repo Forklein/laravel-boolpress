@@ -23,9 +23,9 @@ Auth::routes();
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/roles', 'RoleController@index')->name('roles.index');
-    Route::get('/roles/{role}/edit', 'RoleController@edit')->name('roles.edit');
-    Route::patch('/roles/{role}', 'RoleController@update')->name('roles.update');
+    Route::get('/users', 'UserController@index')->name('users.index');
+    Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
+    Route::patch('/users/{user}', 'UserController@update')->name('users.update');
     Route::resource('/posts', 'PostController');
     Route::resource('/categories', 'CategoryController');
     Route::get('/{any}', function () {

@@ -53,8 +53,8 @@
                                     <a class="dropdown-item" href="{{ route('admin.home') }}">
                                         Profile
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
-                                        Roles
+                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                        Users
                                     </a>
                                     <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
                                         Posts

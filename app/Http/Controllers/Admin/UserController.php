@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,13 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        $user = User::all();
+        return view('admin.users.index', compact('user'));
     }
 
-    public function edit(Role $role)
+    public function edit(user $user)
     {
-        return view('admin.roles.edit', compact('role'));
+        return view('admin.users.edit', compact('user'));
     }
 
     public function update(Request $request, Role $role)
