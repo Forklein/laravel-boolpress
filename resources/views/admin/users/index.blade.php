@@ -23,7 +23,7 @@
                     </td>
                     <td>
                         @forelse ($user->roles as $role)
-                        <span class="badge p-2 rounded-pill" style="background-color: {{$role->color}}">{{$role->name}}</span>
+                        <span class="badge p-2 rounded-pill text-white" style="background-color: {{$role->color}}">{{$role->name}}</span>
                         @empty <span class="badge p-2 rounded-pill bg-dark">Nessun ruolo</span>
                         @endforelse
                     </td>

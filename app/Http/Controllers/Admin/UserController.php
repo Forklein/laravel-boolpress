@@ -17,11 +17,16 @@ class UserController extends Controller
 
     public function edit(user $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        $roleIds = $user->roles->pluck('id')->toArray();
+        return view('admin.users.edit', compact('user', 'roles', 'roleIds'));
     }
 
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->roles;
+        if (!$data) $user->roles()->detach();
+        else $user->roles()->sync($data);
+        return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->name modificato con successo");
     }
 }

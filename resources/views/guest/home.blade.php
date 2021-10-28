@@ -7,20 +7,21 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
     <body>
-        <div class="flex-center position-ref full-height container navbar">
-            @if (Route::has('login'))
+        <div class="flex-center position-ref full-height navbar-light bg-secondary">
+            <div class="container p-3">
+                @if (Route::has('login'))
                 <div class="top-right links font-weight-bold">
                     @auth
-                        <a href="{{ url('/admin') }}">Admin Dashboard</a>
+                        <a class="bg-dark p-2 round rounded" href="{{ url('/admin') }}">ADMIN DASHBOARD</a>
                     @else
-                        <a href="{{ route('login') }}">LOGIN</a>
-
+                        <a class="bg-dark p-2" href="{{ route('login') }}">LOGIN</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">REGISTER</a>
+                            <a class="bg-dark p-2" href="{{ route('register') }}">REGISTER</a>
                         @endif
                     @endauth
                 </div>
-            @endif
+                @endif
+            </div>
         </div>
         
         <div id="root"></div>
