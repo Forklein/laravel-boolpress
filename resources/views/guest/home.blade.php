@@ -18,6 +18,7 @@
                         @if (Route::has('register'))
                             <a class="bg-dark p-2" href="{{ route('register') }}">REGISTER</a>
                         @endif
+                        <a class="bg-dark p-2" href="{{ route('contact.index') }}">CONTATTI</a>
                     @endauth
                 </div>
                 @endif
