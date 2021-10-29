@@ -7,7 +7,14 @@
             <h2>{{$post->title}}</h2>
         </div>
         <div class="card-body">
-            <p>{{$post->content}}</p>
+            <div class="row justify-content-between">
+                <div class="col d-flex justify-content-center align-center">
+                    <p>{{$post->content}}</p>
+                </div>
+                <div class="col-3">
+                    <img class="img-fluid" src="{{url("storage/$post->image")}}" alt="{{$post->title}}">
+                </div>
+            </div>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
             <div class="info">

@@ -29,12 +29,12 @@
     <div class="mb-3">
       @if($post->image)
       <div class="col-3">
-        <img src="{{url("storage/$post->image")}}" alt="{{$post->title}}">
+        <img class="img-fluid" src="{{url("storage/$post->image")}}" alt="{{$post->title}}">
       </div>
       @endif
       <div class="col">
         <label for="image" class="form-label">Load Image</label>
-        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{old('image', $post->image)}}">
+        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
         @error('image')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror

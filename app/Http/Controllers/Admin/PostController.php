@@ -57,7 +57,7 @@ class PostController extends Controller
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
             // 'image.required' => 'Immagine necessaria',
-            'tags.exists' => 'Value non esistente'
+            // 'tags.exists' => 'Value non esistente'
         ]);
 
         $data = $request->all();
@@ -66,7 +66,7 @@ class PostController extends Controller
         $post->slug = str::slug($post->title, '-');
         $post->user_id = Auth::id();
         if (array_key_exists('image', $data)) {
-            $img_path = Storage::put('public', $data['image']);
+            $img_path = Storage::put('posts_image', $data['image']);
             $post->image = $img_path;
         }
         $post->save();
@@ -119,11 +119,10 @@ class PostController extends Controller
         ], [
             // 'required' => 'Il campo :attribute è obbligatorio',
             // 'image.required' => 'Immagine necessaria',
-            'tags.exists' => 'Value non esistente'
+            // 'tags.exists' => 'Value non esistente'
         ]);
 
         $data = $request->all();
-        // $post->fill($data);
         $post->slug = str::slug($post->title, '-');
         $post->user_id = Auth::id();
 
@@ -132,9 +131,9 @@ class PostController extends Controller
         else $post->tags()->sync($data['tags']);
 
         if (array_key_exists('image', $data)) {
-            if ($post->image) Storage::delete($post->image);
-            $img_path = Storage::put('public', $data['image']);
-            $post->image = $img_path;
+            Storage::delete($post->image);
+            $img_path = Storage::put('posts_image', $data['image']);
+            $post['image'] = $img_path;
         }
 
         $post->update($data);
