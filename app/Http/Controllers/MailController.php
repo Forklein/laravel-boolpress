@@ -21,7 +21,7 @@ class MailController extends Controller
         $new_lead->fill($form_data);
         $new_lead->save();
 
-        Mail::to('test@test.it')->send(new SendNewMail($new_lead));
+        Mail::to($new_lead->email)->send(new SendNewMail($new_lead));
         return redirect()->route('contact.index');
     }
 }

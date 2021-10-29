@@ -1,8 +1,8 @@
 @if($post->exists)
-<form method="POST" action="{{route('admin.posts.update', $post->id)}}">
+<form method="POST" action="{{route('admin.posts.update', $post->id)}}" enctype="multipart/form-data">
 @method('PATCH')
 @else
-<form method="POST" action="{{route('admin.posts.store')}}">
+<form method="POST" action="{{route('admin.posts.store')}}" enctype="multipart/form-data">
 @endif
     @csrf
     <div class="mb-3">
@@ -19,13 +19,27 @@
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
       </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
         <label for="image" class="form-label">Link Image</label>
         <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{old('image', $post->image)}}">
         @error('image')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
-    </div>
+    </div> --}}
+    <div class="mb-3">
+      @if($post->image)
+      <div class="col-3">
+        <img src="{{url("storage/$post->image")}}" alt="{{$post->title}}">
+      </div>
+      @endif
+      <div class="col">
+        <label for="image" class="form-label">Load Image</label>
+        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{old('image', $post->image)}}">
+        @error('image')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+      </div>
+  </div>
     <div class="mb-3">
       <label for="category_id" class="form-label">Category</label>
       <select class="form-control" id="category_id" name="category_id">

@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -51,7 +52,6 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|unique:posts|string|min:3',
             'content' => 'required|string|min:10',
-            'image' => 'string|min:3',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id'
         ], [
@@ -65,6 +65,10 @@ class PostController extends Controller
         $post->fill($data);
         $post->slug = str::slug($post->title, '-');
         $post->user_id = Auth::id();
+        if (array_key_exists('image', $data)) {
+            $img_path = Storage::put('public', $data['image']);
+            $post->image = $img_path;
+        }
         $post->save();
 
         //se ho dei tags creo la relazione (dopo SAVE per creare ID del post)
@@ -128,6 +132,12 @@ class PostController extends Controller
         if (!array_key_exists('tags', $data)) $post->tags()->detach();
         else $post->tags()->sync($data['tags']);
 
+        if (array_key_exists('image', $data)) {
+            if ($post->image) Storage::delete($post->image);
+            $img_path = Storage::put('public', $data['image']);
+            $post->image = $img_path;
+        }
+
         $post->update($data);
         return redirect()->route('admin.posts.index')->with('alert', 'info')->with('alert-message', 'Elemento modificato con successo');
     }
@@ -141,6 +151,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
 
+        if ($post->image) Storage::delete($post->image);
         if (count($post->tags)) $post->tags()->detach();
         //Se il post ha dei tags eliminiamo prima i tags e poi i post
         $post->delete();

@@ -31,6 +31,6 @@ class SendNewMail extends Mailable
     public function build()
     {
         $lead = $this->lead;
-        return $this->replyTo($this->lead->email)->view('email.body', compact('lead'));
+        return $this->view('email.body', compact('lead'));
     }
 }
